@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板登录</title>
+    <link th:href="@{~/static/bootstrap/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{~/static/bootstrap/css/bootstrap-responsive.css}" rel="stylesheet">
+    <script th:src="@{~/static/bootstrap/js/jQuery.js}"></script>
+    <script th:src="@{~/static/bootstrap/js/bootstrap.js}"></script>
+    <script th:inline="javascript">
+        function checkForm(){
+            var userName=document.getElementById("userName").value;
+            var password=document.getElementById("password").value;
+            if(userName==null || userName==""){
+                document.getElementById("error").innerHTML="用户名不能为空";
+                return false;
+            }
+            if(password==null || password==""){
+                document.getElementById("error").innerHTML="密码不能为空";
+                return false;
+            }
+            return true;
+        }
+
+        function loadimage(){
+            document.getElementById("randImage").src = [[@{~/code/image}]] + "?" +Math.random();
+        }
+    </script>
+    <style type="text/css">
+        body {
+            padding-top: 200px;
+            padding-bottom: 40px;
+            background-image: url('../../static/images/star.gif');
+        }
+
+        .form-signin-heading{
+            text-align: center;
+        }
+
+        .form-signin {
+            max-width: 300px;
+            padding: 19px 29px 0px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 15px;
+            padding: 7px 9px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div >
+    <form name="myForm" class="form-signin" action="login.action" method="post" onsubmit="return checkForm()">
+        <h2 class="form-signin-heading">简易留言板用户登陆</h2>
+        <input id="userName" name="userName" value="fanqi"  type="text" class="input-block-level" placeholder="用户名...">
+        <input id="password" name="password" value=""   type="password" class="input-block-level" placeholder="密码..." >
+        <td class="field">验证码：
+        <td><input style="width: 100px;margin-right: 10px;"
+                   type=text value="" name="imageCode" id="imageCode"><img
+                onclick="javascript:loadimage();" title="换一张试试" name="randImage"
+                id="randImage" th:src="@{~/code/image}" width="60" height="20" border="1"
+                align="absmiddle"/>
+        </td></td><br>
+        <font id="error" color="red"></font>  <br>
+        <button class="btn btn-large btn-primary" type="submit">登录</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <button class="btn btn-large btn-primary" type="button" >重置</button>
+        <br>没有帐号？注册一个&nbsp;&nbsp;&nbsp;<a href="/register">注册</a>
+        <br>不想登陆？点击&nbsp;&nbsp;&nbsp;<a href="/mainTemp">查看别人的留言</a>
+
+        <p align="center" style="padding-top: 15px;">Power by fanqi </br> <a href="http://weibo.com/fanqisoft" target="_blank">*<font color="red">点此访问我的微博</font>*</a></p>
+    </form>
+</div>
+</body>
+</html>

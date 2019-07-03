@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<package name="struts2" extends="struts-default">
+		<action name="login" class="com.qianyan.action.LoginAction">
+			<result name="success">/mainTemp.jsp</result>
+			<result name="error">/login.jsp</result>
+		</action>
+		<action name="logout" class="com.qianyan.action.LoginAction" method="logout">
+			<result name="success">/login.jsp</result>
+		</action>
+		<action name="register" method="addUser" class="com.qianyan.action.LoginAction">
+			<result name="success">/register-result.jsp</result>
+			<result name="error">/register.jsp</result>
+		</action>
+		<action name="panduan" method="panduan" class="com.qianyan.action.LoginAction">
+		</action>
+		<action name="main" class="com.qianyan.action.MessageAction">
+			<result name="success">/mainTemp.jsp</result>
+		</action>
+		<action name="pass" class="com.qianyan.action.MessageAction" method="pass">
+			<result name="success">/messageTemp.jsp</result>
+		</action>
+		<action name="preSave" class="com.qianyan.action.MessageAction" method="preSave">
+			<result name="success">/messageSave.jsp</result>
+		</action>
+		<action name="update" class="com.qianyan.action.MessageAction" method="update">
+			<result type="redirect">main.action</result>
+		</action>
+		<action name="delete" class="com.qianyan.action.MessageAction" method="delete">
+			<result type="redirect">main.action</result>
+		</action>
+		<action name="add" class="com.qianyan.action.MessageAction" method="add">
+			<result type="redirect">main.action</result>
+		</action>
+		<action name="comment" class="com.qianyan.action.CommentAction">
+			 <result name="success" type="redirect">pass.action</result>
+		</action>
+	</package>
+</struts>
